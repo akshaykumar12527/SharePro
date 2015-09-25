@@ -154,7 +154,7 @@ router.route('/test/:phoneNumber')
 	console.log(req.body);
 	console.log(req.params);
 	var sent;
-	SMS.send(req.body.number,function(done){
+	SMS.send(req.body.phoneNumber,function(done){
 
 		console.log(done);
 		sent=done;
