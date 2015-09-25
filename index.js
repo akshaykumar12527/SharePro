@@ -153,8 +153,9 @@ app.post('/test',function(req,res){
 	SMS.send(7206639567,function(done){
 		console.log(done);
 		sent=done;
+		res.json({'sent':sent});
 	},1);
-	res.json({'sent':sent});
+	
 
 });
 app.post('/validateusername',function(req,res){
