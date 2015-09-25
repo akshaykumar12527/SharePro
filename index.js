@@ -152,10 +152,8 @@ app.post('/login',function(request,response){
 app.post('/test/:phoneNumber',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
-	console.log(req.body.phoneNumber);
-	console.log(req.params.phoneNumber);
 	var sent;
-	SMS.send(req.params.phoneNumber,function(done){
+	SMS.send(req.body.phoneNumber,function(done){
 
 		console.log(done);
 		sent=done;
