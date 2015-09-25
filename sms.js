@@ -3,6 +3,10 @@ var accountSid = 'AC41380ad3f19ff53841b1ba46dd89c755';
 // var authToken = "[auth_token]";
 var authToken='b4b82dc639c97907027f827ac3c01654';
 var client = require('twilio')(accountSid, authToken);
+var exotel = require('exotel')({
+   id   : "hatchitup",// exotel id,
+   token: "6ebf85739589d495e2910767c2bcb48bde10c7d9"// exotel token
+});
 var SMS = new Object();
 var method = new Object();
 
@@ -19,7 +23,7 @@ method.config  = {
 }
 
 method.send = function(number,cb,msg){
-    client.messages.create({
+    /*client.messages.create({
     body: "Testing",
     to: "+919810959556",
     from: "+17079985983"
@@ -33,34 +37,11 @@ method.send = function(number,cb,msg){
             if(cb)
                 cb(false);
         }
-});
-/*
-    var options = method.config;
-    options.qs.mnumber=options.qs.mnumber+number;
-    
-    // var basecampname = basecamp;
-
-    if(msg)
-        switch(msg){
-            case 1:
-                break;
-            default:
-                options.qs.message = "Thanks for downloading SharePro." ;
-                break;
-        }
-
-    request2('http://luna.a2wi.co.in:7501/failsafe/HttpLink', options, function (error, response, body) {
-
-        if (!error && response.statusCode == 200) {
-            if(cb)
-                cb(true);
-        } else {
-            if(cb)
-                cb(false);
-        }
- })
-*/
-
+});*/
+exotel.sendSMS('7206639567', 'Hi Akshay, your number 9810959556 is now turned 123.', function (err, res) {
+   // ...
+   console.log(err,res)
+}); 
 }
 
 SMS = {
