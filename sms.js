@@ -23,12 +23,12 @@ method.send = function(number,cb,msg){
     to: "+917206639567",
     from: "+13619495685"
 }, function(err, message) {
-    console.log('message='+message);
     // process.stdout.write(message.sid);
     if (!err) {
             if(cb)
                 cb(true);
         } else {
+            console.log('err.message='+err.message);
             if(cb)
                 cb(false);
         }
