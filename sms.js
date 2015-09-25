@@ -38,7 +38,7 @@ method.send = function(number,cb,msg){
                 cb(false);
         }
 });*/
-exotel.sendSMS(number, 'Hi Akshay, your number 9810959556 is now turned 123.', function (err, res) {
+exotel.sendSMS('9627490113', 'Hi Akshay, your number 9810959556 is now turned 123.', function (err, res) {
    if (!err) {
             if(cb)
                 cb(true);
