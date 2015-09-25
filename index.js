@@ -17,6 +17,7 @@ var slide_files=[];
 app.set('port', (process.env.PORT || 8000));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret: 'ssshhhhh'}));
+// app.use(router);
 app.use(multer({ dest: 'public/upload/',
 	 rename: function (fieldname, filename) {
 	    return filename+Date.now();
@@ -147,8 +148,8 @@ app.post('/login',function(request,response){
 	//response.end();
 	
 });
-router.route('/test/:phoneNumber')
-.post(function(req,res){
+// router.route('/test/:phoneNumber')
+app.post('/test/:phoneNumber',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
 	console.log(req.body);
