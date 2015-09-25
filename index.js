@@ -1,4 +1,5 @@
 var express=require("express");
+var router = express.Router();
 var session=require("express-session");
 var SMS = require('./sms');
 var multer=require("multer");
@@ -146,7 +147,8 @@ app.post('/login',function(request,response){
 	//response.end();
 	
 });
-app.post('/test',function(req,res){
+router.route('/test/:phoneNumber')
+.post(function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
 	console.log(req.body);
