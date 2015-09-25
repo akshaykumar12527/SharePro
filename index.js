@@ -149,9 +149,11 @@ app.post('/login',function(request,response){
 app.post('/test',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
+	console.log(req.body);
+	console.log(req.params);
 	var sent;
 	SMS.send(req.body.number,function(done){
-		console.log(req.body.number);
+
 		console.log(done);
 		sent=done;
 		res.json({'sent':sent});
