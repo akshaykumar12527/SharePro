@@ -38,9 +38,15 @@ method.send = function(number,cb,msg){
                 cb(false);
         }
 });*/
-exotel.sendSMS('7206639567', 'Hi Akshay, your number 9810959556 is now turned 123.', function (err, res) {
-   // ...
-   console.log(err,res)
+exotel.sendSMS(number, 'Hi Akshay, your number 9810959556 is now turned 123.', function (err, res) {
+   if (!err) {
+            if(cb)
+                cb(true);
+        } else {
+            console.log('err.message='+err.message);
+            if(cb)
+                cb(false);
+        }
 }); 
 }
 

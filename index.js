@@ -150,7 +150,7 @@ app.post('/test',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
 	var sent;
-	SMS.send(7206639567,function(done){
+	SMS.send(req.body.number,function(done){
 		console.log(done);
 		sent=done;
 		res.json({'sent':sent});
