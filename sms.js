@@ -1,5 +1,7 @@
 var request2 = require('request')
-
+var accountSid = 'AC32a3c49700934481addd5ce1659f04d2';
+var authToken = "{{ auth_token }}";
+var client = require('twilio')(accountSid, authToken);
 var SMS = new Object();
 var method = new Object();
 
@@ -16,7 +18,21 @@ method.config  = {
 }
 
 method.send = function(number,cb,msg){
-
+    client.messages.create({
+    body: "Testing",
+    to: "+917206639567",
+    from: "+13619495685"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+    if (!err) {
+            if(cb)
+                cb(true);
+        } else {
+            if(cb)
+                cb(false);
+        }
+});
+/*
     var options = method.config;
     options.qs.mnumber=options.qs.mnumber+number;
     
@@ -41,7 +57,7 @@ method.send = function(number,cb,msg){
                 cb(false);
         }
  })
-
+*/
 
 }
 
