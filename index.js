@@ -151,6 +151,7 @@ app.post('/test',function(req,res){
 	// console.log(SMS.send)
 	var sent;
 	SMS.send(req.body.number,function(done){
+		console.log(req.body.number);
 		console.log(done);
 		sent=done;
 		res.json({'sent':sent});
