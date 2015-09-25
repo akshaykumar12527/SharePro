@@ -1,6 +1,7 @@
 var request2 = require('request')
-var accountSid = 'PN6b20979ca1b12c150e704a9f98ab8336';
-var authToken = "{{ auth_token }}";
+var accountSid = 'AC59466b8ad9fad8f91d16d6dd3c16b331';
+// var authToken = "{{ auth_token }}";
+var authToken='6efb8cbd3507ce8f144162394b3254ce';
 var client = require('twilio')(accountSid, authToken);
 var SMS = new Object();
 var method = new Object();
