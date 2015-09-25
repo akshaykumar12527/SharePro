@@ -1,5 +1,5 @@
 var request2 = require('request')
-var accountSid = 'AC32a3c49700934481addd5ce1659f04d2';
+var accountSid = 'PN6b20979ca1b12c150e704a9f98ab8336';
 var authToken = "{{ auth_token }}";
 var client = require('twilio')(accountSid, authToken);
 var SMS = new Object();
@@ -23,7 +23,7 @@ method.send = function(number,cb,msg){
     to: "+917206639567",
     from: "+13619495685"
 }, function(err, message) {
-    // process.stdout.write(message.sid);
+    process.stdout.write(message.sid);
     if (!err) {
             if(cb)
                 cb(true);
