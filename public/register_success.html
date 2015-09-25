@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Free Trial Thank You!</title>
+<meta content="KV Video Presentation Tool" name="keywords">
+<meta content="KVApp" name="Akshay kumar">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/fonts/glyphicons-pro/glyphicons-pro.css">
+<link href="assets/skin/default_skin/css/theme.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-forms/css/admin-forms.css">
+<link rel="stylesheet" href="vendor/jquery/jquery_ui/jquery-ui.css">
+<link href="assets/img/favicon.ico" rel="shortcut icon">
+<style>
+ #hs-rsp-popup-bg {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: transparent url("overlay-bg.png")  scroll 0px 0px;
+    z-index: 9998;
+    
+}
+#hs-rsp-image-wrap {
+    position: relative;
+    background-color: #FFF;
+    padding: 10px;
+}
+#hs-rsp-image-loader {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: transparent url("ajax-loader.gif") no-repeat scroll center center;
+    margin-left: -30px;
+}
+.ui-slider-horizontal .ui-slider-handle{
+top: -0.1em;
+}
+ul.tray-nav li a{
+color:white;
+}
+ul.tray-nav li.active a{
+background-color:transparent;
+color: #8C1B9A;
+}
+.tray-nav.tray-nav-border li a{
+background-color: transparent;
+}
+.slides.list-group > li > img {
+    border: 5px solid white;
+}
+.slides.list-group > li > img:hover {
+   border-color: #A12594;
+}
+.slides{
+list-style:none;
+padding: 30px;
+}
+
+</style>
+</head>
+<body class="external-page boxed-layout sb-l-o sb-r-c">
+<div id="main">
+<header class="navbar navbar-fixed-top bg-info" style="height:100px;padding: 5px;">
+<div class="navbar-branding" style="height:100%;width:100%">
+<div class="row">
+<div class="col-md-2">
+<img src="assets/img/logos/KVApp.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/Video-icon.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+<div class="col-md-2">
+<img src="assets/img/logos/video-icon_3.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/Video-icon.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+<div class="col-md-2">
+<img src="assets/img/logos/KVApp.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/video-icon_3.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+</div>
+   
+  </div>
+</header>
+
+<section id="content_wrapper" style="margin: 10%;left:0px;">
+      <section id="content" class="">
+  	<div class="row" >
+  	<div class="col-md-12">
+  	<div id="lpeCDiv_15445" class="lpeCElement Rich_Text_5">
+  	<span class="lpContentsItem richTextSpan">
+  	<h1 style="text-align: center;color: white;font-weight: 500;">Congratulations, it's time to start creating your Presentation with us!</h1></span></div>
+  	</div>
+  	</div>
+  	<div style="width:100%;height: 50px;" >
+  	<div class="row">
+<div class="col-md-4 pull-right" style="width:50%">
+<div class="row">
+<div class="col-md-2">
+<i class="glyphicons glyphicons-2x  glyphicons-user pull-right" style="color: black;"></i>
+</div>
+<div class="col-md-8" style="margin-top:2%;">
+<div id="slider"></div>
+</div>
+<div class="col-md-2">
+<i class="glyphicons glyphicons-2x glyphicons-picture" style="color: black;"></i>
+</div>
+</div>
+</div>
+</div>
+  	
+  	</div>
+  	<div class="row" style="margin-left: -10%; margin-right: -10%;">
+  	<div class="col-md-2">
+  	
+      
+      <div>
+      <h3 style="text-transform: uppercase; letter-spacing: 2px; font-weight: bold; font-size: 1.2em; color: rgb(159, 36, 149);" id="chaptersLabel" allow-edit="text">Chapters</h3>
+      </div>
+       <div id="nav-spy">
+            <ul class="nav tray-nav tray-nav-border" style="position: inherit;">
+              <li class="active">
+                <a href="#spy1">
+                  Welcome!</a>
+              </li>
+              <li class="">
+                <a href="#spy2">
+                  Let's Begin</a>
+              </li>
+              <li class="">
+                <a href="#spy3">
+                  Choose Password</a>
+              </li>
+              <li class="">
+                <a href="#spy4">
+                  Your Home Page</a>
+              </li>
+              <li class="">
+                <a href="#spy5">
+                  Start creating</a>
+              </li>
+              
+            </ul>
+          </div>
+       
+     
+     
+  	</div>
+  	<div class="col-md-10" >
+  	<div  class="row" >
+<div  class="col-lg-6" id="video" >
+<video id="vid" style="width: 100%; height: 100%;" src="" autoplay="autoplay" loop="true" ></video>
+</div>
+<div class="col-lg-6" id="selected_slide"  >
+<img style="width: 100%; height: 100%; min-height: 100%;" src="black.jpg" class="img-container">
+</div>
+</div>
+  	<div class="row">
+  	<div class="col-md-6">
+  	</div>
+  	<div class="col-md-6">
+  	<div class="panel" style="background-color: transparent;">
+ <div class="panel-heading" style="padding: 0px;background-color: transparent;">
+ <div>
+      <h3 style="text-transform: uppercase; margin:12px; letter-spacing: 2px; font-weight: bold; font-size: 1.2em; color: rgb(159, 36, 149);" id="chaptersLabel" allow-edit="text">Slides</h3>
+      </div>
+</div>
+<div class="panel-body panel-scroller scroller-sm scroller-pn pn scroller scroller-active" style="min-height: 300px;">
+<div style="height: 199px;" class="scroller-bar">
+<div style="height: 189px; margin-bottom: 5px; margin-top: 5px;" class="scroller-track">
+<div style="height: 74.8868px; top: 1px;" class="scroller-handle">
+</div></div></div>
+<div class="scroller-content">
+<ul class="slides list-group">
+
+</ul>
+ </div>
+ </div>
+  </div>
+  	
+  	</div>
+  	</div>
+  	</div>
+  	</div>
+  	
+     <div class="row">
+     <div class="col-lg-12 text-center text-capitalize">
+     <a href="#login" class="btn btn-lg btnStart btn-info" style="background-color: rgb(152, 33, 151); font-size: 30px;">Start Now</a>
+     </div>
+     </div>
+      </section>
+      <!-- End: Content -->
+
+    </section>
+
+</div>
+<script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+<script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+<script src="vendor/jquery/jquery.form-validator.min.js"></script>
+<script src="assets/js/utility/utility.js"></script>
+<script src="assets/js/demo/demo.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+$(function(){
+	var slides,video;
+	
+	 $( "#slider" ).slider({
+		  value:50,
+		  slide: function( event, ui ) {
+		        //$( "#amount" ).val( "$" + ui.value );
+		        var vid=100-ui.value;
+		        $('#video').attr('style','width:'+vid+'%');
+		       $('#selected_slide').attr('style','width:'+ui.value+'%');
+		       
+	      //alert(ui.value);
+		  }
+	  });
+	 $('.btnStart').click(function(){
+		 $('#content').load('login.html');
+	 });
+	 $.get('getSlide_Data',{'video_id':1},function(data,status){
+	    	 video=data.video;
+	    	//alert(video.path);
+	    	//$('video').attr('src',video.path);
+	    	document.getElementById('vid').src=video.path;
+	    	document.getElementById('vid').autoplay=true;
+	    	document.getElementById('vid').loop=true;
+	    	    	//$('video').play();
+	    	slides=data.slides;
+	    	$('#selected_slide').find('img').attr('src',slides[0].path);
+	    	 for(var i=0;i<slides.length;i++){
+	            	var li=document.createElement("li");
+	            i==0?li.innerHTML='<img src="'+slides[i].path+'" class="img-preview" style="border-color: #A12594";  />':li.innerHTML='<img src="'+slides[i].path+'" class="img-preview" />';
+	           		//slides=response.slides;
+	            		$(".slides").append(li);	
+	            	
+	                      }
+	    	var duration=0;
+	    	setInterval(function(){
+	    		
+	    	for(var i=0;i<slides.length;i++){
+	    		if(slides[i].start_time==duration){
+	    			$('#selected_slide').find('img').attr('src',slides[i].path);
+	    			$('.slides').find('li').find('img').removeAttr('style');
+	    			$('.slides').find('li').find('img[src="'+slides[i].path+'"]').attr('style','border-color: #A12594;');
+	    		}
+	    	}
+	    	duration=Math.round(document.getElementById('vid').currentTime);
+	    	//if(video.duration==duration)
+	    		//{
+	    		//duration=0;
+	    		//}
+	    	},1000);
+	    	
+	    });
+	/* $(document).on('click','li',function(){
+		// alert($(this).find('img').attr('src'));
+		 for(var i=0;i<slides.length;i++){
+	    		if(slides[i].path==$(this).find('img').attr('src')){
+	    			console.log(slides[i].start_time);
+	    		console.log(document.getElementById('vid').currentTime=5);
+	    		
+	    		console.log(document.getElementById('vid').currentTime);
+	    		}
+	    	}
+		 
+	 });*/
+	
+});
+</script>
+</body>
+</html>

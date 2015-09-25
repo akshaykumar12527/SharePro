@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <title>Testing Module</title>
+  <meta name="author" content="Akshay Kumar">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font CSS (Via CDN) -->
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/css/theme.css">
+  <!-- Glyphicons Pro CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/glyphicons-pro/glyphicons-pro.css">
+  <!-- jQuery slider CSS -->
+	<link rel="stylesheet" href="vendor/jquery/jquery_ui/jquery-ui.css">
+  <!-- Icomoon CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/icomoon/icomoon.css">
+
+  <!-- Iconsweets CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/iconsweets/iconsweets.css">
+
+  <!-- Octicons CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/octicons/octicons.css">
+
+  <!-- Stateface CSS(font) -->
+  <link rel="stylesheet" type="text/css" href="assets/fonts/stateface/stateface.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+</head>
+
+<body class="external-page boxed-layout sb-l-o sb-r-c">
+
+  
+  <!-- Start: Main -->
+  <div id="main">
+
+    <!-- Start: Header -->
+  <header class="navbar navbar-fixed-top bg-info" style="height:100px;padding: 5px;">
+<div class="navbar-branding" style="height:100%;width:100%">
+<div class="row">
+<div class="col-md-2">
+<img src="assets/img/logos/KVApp.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/Video-icon.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+<div class="col-md-2">
+<img src="assets/img/logos/video-icon_3.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/Video-icon.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+<div class="col-md-2">
+<img src="assets/img/logos/KVApp.png" class="logo" height="90px" width="90px"></img>
+</div>
+<div class="col-md-2">
+ <img src="assets/img/logos/video-icon_3.png" class="logo" height="90px" width="90px"></img>
+   
+</div>
+</div>
+   
+  </div>
+</header>
+<section id="content_wrapper" style="margin: 10%;left:0px;">
+      <section id="content" class="">
+<div class="row">
+<div class="col-md-4 pull-right">
+<div class="row">
+<div class="col-md-2">
+<i class="glyphicons glyphicons-2x  glyphicons-user pull-right" style="color: black;"></i>
+</div>
+<div class="col-md-8" style="margin-top:2%;">
+<div class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"><span style="left: 50%;" class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span></div>
+</div>
+<div class="col-md-2">
+<i class="glyphicons glyphicons-2x glyphicons-picture" style="color: black;"></i>
+</div>
+</div>
+</div>
+</div>
+<div style="border: 2px solid rgb(34, 81, 97); border-radius: 5px;">
+<div style="margin: 3%;" class="row">
+<div class="col-lg-6" id="video">
+<video id="vid" style="width: 100%; height: 100%;" src="" controls="" autoplay="autoplay" loop="true"></video>
+</div>
+<div class="col-lg-6" id="selected_slide">
+<img style="width: 100%; height: 100%; min-height: 100%;" src="" class="img-container">
+</div>
+</div>
+</div>
+
+  </section>
+  </section>  
+
+ </div>
+   <!-- End: Main -->
+
+  <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+  <script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+  <!-- Theme Javascript -->
+  <script src="assets/js/utility/utility.js"></script>
+<script src="vendor/jquery/jquery.form.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="vendor/RecordRTC.js"></script>
+  <script src="javascript/recording.js"></script>
+  <script src="vendor/jquerysession.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+	  $( "#slider" ).slider({
+		  value:50,
+		  slide: function( event, ui ) {
+		        //$( "#amount" ).val( "$" + ui.value );
+		        var vid=100-ui.value;
+		        $('#video').attr('style','width:'+vid+'%');
+		        $('#selected_slide').attr('style','width:'+ui.value+'%');
+	      //alert(ui.value);
+		  }
+	  });
+	    var video_id=$.session.get('video_id');
+	    //alert(video_id);
+	    $.get('getSlide_Data',{'video_id':video_id},function(data,status){
+	    	var video=data.video;
+	    	//alert(video.path);
+	    	$('video').attr('src',video.path);
+	    	//$('video').play();
+	    	var slides=data.slides;
+	    	$('.img-container').attr('src',slides[0].path);
+	    	var duration=0;
+	    	setInterval(function(){
+	    		
+	    	for(var i=0;i<slides.length;i++){
+	    		if(slides[i].start_time==duration){
+	    			$('.img-container').attr('src',slides[i].path);
+	    		}
+	    	}
+	    	duration=Math.round(document.getElementById('vid').currentTime);
+	    	//if(video.duration==duration)
+	    		//{
+	    		//duration=0;
+	    		//}
+	    	},1000);
+	    	
+	    });
+	    
+  });
+  </script>
+  <!-- END: PAGE SCRIPTS -->
+
+</body>
+
+</html>
