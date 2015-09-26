@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "body-parser": "1.9.2",
-    "cloudconvert": "latest",
     "exotel": "^1.0.1",
     "express": "4.10.8",
     "express-session": "latest",
@@ -16,8 +15,7 @@
     "node-uuid": "latest",
     "request": "^2.64.0",
     "twilio": "^2.4.0",
-    "unzip2": "latest"
-  },
+    },
   "engines": {
     "node": "0.12.7"
   },
