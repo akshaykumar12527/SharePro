@@ -2,6 +2,7 @@ var express=require("express");
 var router = express.Router();
 var session=require("express-session");
 var SMS = require('./sms');
+var tables = require('./tables/tables');
 var multer=require("multer");
 var OTP;
 var bodyParser=require('body-parser');
@@ -87,19 +88,21 @@ app.post('/login',function(request,response){
 router.route('/getCards/:phoneNumber')
 .post(function(req,res){
 	console.log('into getCards');
-	var sent;
-	var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
-	 for(var i=0;i<database.card.length;i++){
-		 if(database.card[i].userid==req.params.phoneNumber)
-			{
+	tables.getCardByUserID(function(found){
+		if(found){
 			response.error=false;
-	    	response.data=database.card[i].path;
-	    	response.userMessage='get Cards by user successfully';
+		    response.data=database.card[i].path;
+		    response.userMessage='get Cards by user successfully';
+		    SendResponse(res);
+		}
+		else{
+			response.error=true;
+	    	response.data=null;
+	    	response.userMessage='User not found';
 	    	SendResponse(res);
-			break;
-			}
-	 }
-	
+			
+		}
+	});
 	
 	});
 	
