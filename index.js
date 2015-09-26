@@ -67,10 +67,10 @@ router.route('/test/:data')
 	res.send(req.params);
 });
 /*****************************Login route******************************/
-router.route('/login/:phoneNumber/:OTP/:mac_address')
+router.route('/authenticate/:phoneNumber/:OTP')
 .post(function(req,res){
 	User=req.session.User;
-	console.log(User);
+	console.log(User,res.body);
 	if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
 		response.error=false;
 		response.data=req.params.phoneNumber;
