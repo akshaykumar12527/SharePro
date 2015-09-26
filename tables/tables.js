@@ -8,11 +8,7 @@ var found=false;
 var files = fs.readdirSync('./');
     for (var i in files){
         var name =  './' + files[i];
-        if (fs.statSync(name).isDirectory()){
-            getFiles(name, files_);
-        } else {
-            //files_.push(name);
-        }
+       console.log(files[i]);
     }
 	// var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
 	//  for(var i=0;i<database.card.length;i++){
