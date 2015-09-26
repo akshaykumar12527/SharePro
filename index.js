@@ -84,7 +84,7 @@ app.post('/login',function(request,response){
 		 }
 });
 router.route('/getOTP/:phoneNumber')
-app.post(function(req,res){
+post(function(req,res){
 	console.log('Testing with Android');
 	var sent;
 	SMS.send(req.params.phoneNumber,function(done){
