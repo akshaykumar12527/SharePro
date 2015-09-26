@@ -103,8 +103,8 @@ router.route('/getCards/:phoneNumber')
 	
 	});
 	
-/********************End of generate OTP user***********************************************/
-});
+/********************End of getcards by user***********************************************/
+
 
 /*****************************Generate OTP for user******************************/
 router.route('/getOTP/:phoneNumber')
