@@ -54,8 +54,8 @@ app.use('/',router);
 // app.get('/',function(req,res){
 // 	console.log(req.url);
 // 	res.sendFile(__dirname+'/public/signup.html');
-});
-router.route('test/:data')
+// });
+router.route('/test/:data')
 .post(function(req,res){
 	console.log(res.body);
 	res.send(res.body);
@@ -103,9 +103,6 @@ app.post('/register/:phoneNumber/:mac_address',function(req,res){
 		}
 	});
 	
-
-});
-app.post('/',function(req,res){
 
 });
 app.listen(app.get('port'), function() {
