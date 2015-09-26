@@ -52,16 +52,17 @@ router.route('/authenticate/:phoneNumber/:OTP')
 	if(User){
 		console.log(User,res.body);
 		if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
-			tables.insertUser(User,function(done){
+			tables.insertUser(User,function(exist,done){
 				if(done){
 					response.error=false;
 					response.data=req.params.phoneNumber;
-					response.userMessage='Authenticated successfully';
+					response.userMessage=exist?'User exist opening your app':'Authenticated successfully';
 					SendResponse(res);		
 				}	
 				else{
 					response.error=true;
 					response.data=null;
+
 					response.userMessage='Something went wrong';
 					SendResponse(res);			
 				}
@@ -128,6 +129,36 @@ router.route('/getCards/:phoneNumber')
 				response.error=true;
 		    	response.data=null;
 		    	response.userMessage='User not found';
+		    	SendResponse(res);
+				
+			}
+		});
+	}
+	else{
+		response.error=true;
+		response.data=null;
+		response.userMessage='Something went wrong';
+		SendResponse(res);	
+	}
+	});
+	
+/********************End of getcards by user***********************************************/
+/*****************************Get contacts by userid******************************/
+router.route('/getContacts/:user1')
+.post(function(req,res){
+	console.log('into getContacts');
+	if(req.params.user1 && req.params.user1.length==10){
+		tables.getContacts(req.params,function(found,data){
+			if(found){
+				response.error=false;
+			    response.data=data;
+			    response.userMessage='get Contacts successfully';
+			    SendResponse(res);
+			}
+			else{
+				response.error=true;
+		    	response.data=null;
+		    	response.userMessage='Contacts not found';
 		    	SendResponse(res);
 				
 			}

@@ -3,9 +3,19 @@ var methods = new Object();
 methods.insertUser = function(data,cb){
 	try{
 		var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
-		database.users.push(data);
-		fs.writeFileSync("./database/SharePro.json",JSON.stringify(database));
-		cb(true);
+		var found=false;
+		for(var i=0;i<database.users.length;i++){
+			if(data.users[i].phoneNumber==data.phoneNumber){
+				found=true;
+				cb(found,found);
+			}
+			else if(!found && i==database.users.length-1){
+				database.users.push(data);
+				fs.writeFileSync("./database/SharePro.json",JSON.stringify(database));
+				cb(found,!found);		
+			}
+		}
+		
 	}
 	catch(Exception){
 		cb(false);
@@ -36,6 +46,20 @@ methods.shareCards = function(data,cb){
 		cb(data,false);
 	}
 
+};
+methods.getContacts=function(data,cb){
+	var found=false;
+	var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
+	var count = 0;
+	 for(var i=0;i<database.friendship.length;i++){
+		 if(database.friendship[i].user1==data.user1)
+			{
+				found = true;
+				data.contacts[count] = database.friendship[i].user2;
+				count++;
+			}
+	 }
+	cb(found,data);
 };
 methods.getCardByUserID=function(userid,cb){
 	var found=false;
