@@ -20,7 +20,10 @@ var response = {
   userMessage:'',
   errors:null
 };
-
+var User={
+	phoneNumber:'',
+	OTP:''
+};
 var NullResponseValue = function () {
   response = {
     error:false,
@@ -63,27 +66,21 @@ router.route('/test/:data')
 	console.log(req.body,req.params);
 	res.send(req.params);
 });
-app.post('/login',function(request,response){
-	var username=request.body.username;
-	var password=request.body.password;
-	var ses=request.session;
-	 var database=JSON.parse((fs.readFileSync("./database/kvapp.json")).toString());
-	
-	 for(var i=0;i<database.users.length;i++){
-		 if(database.users[i].username==username && database.users[i].password==password)
-			 {
-			 response.sendFile(__dirname+'/public/new_presentation.html');
-				ses.username=username;
-				ses.name=database.users[i].firstname+' '+database.users[i].lastname;
-				//response.end();
-				break;
-			 }
-	 }
-	 if(!ses.username)
-		 {
-		 response.end('row 0');
-		 }
+/*****************************Login route******************************/
+router.route('/login/:phoneNumber/:OTP/:mac_address')
+.post(function(req,res){
+	User=req.session.User;
+	if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
+		response.error=false;
+		response.data=req.params.phoneNumber;
+		response.userMessage='Authenticated successfully';
+		SendResponse(res);
+	}
+	else{
+
+	}
 });
+/*****************************End of Login******************************/
 /*****************************Get cards by userid******************************/
 router.route('/getCards/:phoneNumber')
 .post(function(req,res){
@@ -114,13 +111,17 @@ router.route('/getOTP/:phoneNumber')
 .post(function(req,res){
 	console.log('Testing with Android');
 	var sent;
+	var ses=req.session;
 	SMS.send(req.params.phoneNumber,function(done){
 		sent=done;
 		if(done.sent)
 		{
 		response.error=false;
-    	response.data=done.OTP;
     	var OTP=done.OTP;
+    	User.OTP = done.OTP;
+    	User.phoneNumber = req.params.phoneNumber;
+    	response.data=User;
+    	ses.User = User;
     	response.userMessage='Message sent successfully';
     	SendResponse(res);
 		}
