@@ -57,7 +57,7 @@ app.use('/',router);
 // });
 router.route('/test/:data')
 .post(function(req,res){
-	console.log(req.body,req.params);
+	// console.log(req.body,req.params);
 	res.send(req.params);
 });
 app.post('/login',function(request,response){
@@ -81,8 +81,8 @@ app.post('/login',function(request,response){
 		 response.end('row 0');
 		 }
 });
-// router.route('/test/:phoneNumber')
-app.post('/register/:phoneNumber/:mac_address',function(req,res){
+router.route('/test/:phoneNumber')
+app.post(function(req,res){
 	console.log('Testing with Android');
 	var sent;
 	SMS.send(req.params.phoneNumber,function(done){
