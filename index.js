@@ -4,15 +4,15 @@ var session=require("express-session");
 var SMS = require('./sms');
 var tables = require('./tables/tables');
 var multer=require("multer");
-var OTP;
 var bodyParser=require('body-parser');
 var app=express();
 var fs = require("fs");
-var slide_files=[];
 app.set('port', (process.env.PORT || 8000));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret: 'ssshhhhh'}));
-// app.use('/api',router);
+app.use('/',router);
+
+var OTP;
 var response = {
   error:false,
   code:"",
@@ -54,7 +54,6 @@ app.use(multer({ dest: 'public/upload/',
 	  done=true;
 	}
 	}));
-app.use('/',router);
 // app.use(express.static(__dirname+"/public"));
 // app.get('/',function(req,res){
 // 	console.log(req.url);
@@ -92,27 +91,34 @@ router.route('/authenticate/:phoneNumber/:OTP')
 		SendResponse(res);
 	}
 });
-/*****************************End of Login******************************/
+/****************************End of Login*****************************/
 /*****************************Get cards by userid******************************/
 router.route('/getCards/:phoneNumber')
 .post(function(req,res){
 	console.log('into getCards');
-	tables.getCardByUserID(req.params.phoneNumber,function(found,data){
-		if(found){
-			response.error=false;
-		    response.data=data;
-		    response.userMessage='get Cards by user successfully';
-		    SendResponse(res);
-		}
-		else{
-			response.error=true;
-	    	response.data=null;
-	    	response.userMessage='User not found';
-	    	SendResponse(res);
-			
-		}
-	});
-	
+	if(req.params.phoneNumber){
+		tables.getCardByUserID(req.params.phoneNumber,function(found,data){
+			if(found){
+				response.error=false;
+			    response.data=data;
+			    response.userMessage='get Cards by user successfully';
+			    SendResponse(res);
+			}
+			else{
+				response.error=true;
+		    	response.data=null;
+		    	response.userMessage='User not found';
+		    	SendResponse(res);
+				
+			}
+		});
+	}
+	else{
+		response.error=true;
+		response.data=null;
+		response.userMessage='Something went wrong';
+		SendResponse(res);	
+	}
 	});
 	
 /********************End of getcards by user***********************************************/
@@ -124,30 +130,38 @@ router.route('/getOTP/:phoneNumber')
 	console.log('Testing with Android');
 	var sent;
 	var ses=req.session;
+	if(req.phoneNumber.length==10){
 	SMS.send(req.params.phoneNumber,function(done){
 		sent=done;
-		if(done.sent)
-		{
-		response.error=false;
-    	var OTP=done.OTP;
-    	User.OTP = done.OTP;
-    	User.phoneNumber = req.params.phoneNumber;
-    	response.data=User;
-    	ses.User = User;
-    	response.userMessage='Message sent successfully';
-    	SendResponse(res);
+		if(done.sent){
+			response.error=false;
+	    	var OTP=done.OTP;
+	    	User.OTP = done.OTP;
+	    	User.phoneNumber = req.params.phoneNumber;
+	    	response.data=User;
+	    	ses.User = User;
+	    	response.userMessage='Message sent successfully';
+	    	SendResponse(res);
 		}
-		else
-		{
+		else{
+			response.error=true;
+	    	response.data=null;
+	    	response.userMessage='Something went wrong!';
+	    	SendResponse(res);
+		}
+		});
+	}
+	else{
 		response.error=true;
-    	response.data=null;
-    	response.userMessage='Something went wrong!';
-    	SendResponse(res);
-		}
-	});
+	    	response.data=null;
+	    	response.userMessage='Something went wrong!';
+	    	
+	}
 	
-/********************End of generate OTP user***********************************************/
 });
+/********************End of generate OTP user***********************************************/
+
 app.listen(app.get('port'), function() {
 	  console.log('SharePro node app is running on port', app.get('port'));
 	});
+module.exports=app;
