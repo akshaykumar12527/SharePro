@@ -88,10 +88,10 @@ app.post('/login',function(request,response){
 router.route('/getCards/:phoneNumber')
 .post(function(req,res){
 	console.log('into getCards');
-	tables.getCardByUserID(req.params.phoneNumber,function(found){
+	tables.getCardByUserID(req.params.phoneNumber,function(found,data){
 		if(found){
 			response.error=false;
-		    response.data=database.card[i].path;
+		    response.data=data;
 		    response.userMessage='get Cards by user successfully';
 		    SendResponse(res);
 		}
