@@ -156,7 +156,7 @@ app.post('/test/:phoneNumber',function(req,res){
 	
 	console.log(req.body.phoneNumber);
 	var sent;
-	SMS.send(req.body.phoneNumber,function(done){
+	SMS.send(req.params.phoneNumber,function(done){
 
 		console.log(done);
 		sent=done;
