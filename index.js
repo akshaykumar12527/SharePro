@@ -130,7 +130,7 @@ router.route('/getOTP/:phoneNumber')
 	console.log('Testing with Android');
 	var sent;
 	var ses=req.session;
-	if(req.phoneNumber.length==10){
+	if(req.params.phoneNumber && req.params.phoneNumber.length==10){
 	SMS.send(req.params.phoneNumber,function(done){
 		sent=done;
 		if(done.sent){
