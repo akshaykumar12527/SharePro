@@ -3,6 +3,7 @@ var router = express.Router();
 var session=require("express-session");
 var SMS = require('./sms');
 var multer=require("multer");
+var OTP;
 var bodyParser=require('body-parser');
 var app=express();
 var fs = require("fs");
@@ -59,7 +60,7 @@ router.route('/test/:data')
 .post(function(req,res){
 	
 	console.log(req.body,req.params);
-	res.send(res.body);
+	res.send(req.params);
 });
 app.post('/login',function(request,response){
 	var username=request.body.username;
@@ -82,7 +83,7 @@ app.post('/login',function(request,response){
 		 response.end('row 0');
 		 }
 });
-router.route('/test/:phoneNumber')
+router.route('/getOTP/:phoneNumber')
 app.post(function(req,res){
 	console.log('Testing with Android');
 	var sent;
@@ -92,6 +93,7 @@ app.post(function(req,res){
 		{
 		response.error=false;
     	response.data=data.OTP;
+    	var OTP=data.OTP;
     	response.userMessage='Message sent successfully';
     	SendResponse(res);
 		}
