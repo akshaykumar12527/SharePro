@@ -50,7 +50,7 @@ router.route('/authenticate/:phoneNumber/:OTP')
 .post(function(req,res){
 	User=req.session.User;
 	if(User){
-		console.log(User,res.body);
+		console.log(User);
 		if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
 			tables.insertUser(User,function(exist,done){
 				if(done){
