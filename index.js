@@ -59,7 +59,7 @@ router.route('/test/:data')
 .post(function(req,res){
 	
 	console.log(req.body,req.params);
-	res.send(res.params);
+	res.send(res.body);
 });
 app.post('/login',function(request,response){
 	var username=request.body.username;
