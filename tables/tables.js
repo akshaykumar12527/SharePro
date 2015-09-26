@@ -17,8 +17,8 @@ methods.insertUser = function(data,cb){
 		}
 		
 	}
-	catch(Exception e){
-		console.log(e.getMessage());
+	catch(Exception){
+		console.log(Exception);
 		cb(false);
 	}
 
@@ -31,8 +31,7 @@ methods.insertCard = function(data,cb){
 		fs.writeFileSync("./database/SharePro.json",JSON.stringify(database));
 		cb(data,true);
 	}
-	catch(Exception e){
-		console.log(e.getMessage());
+	catch(Exception){
 		cb(data,false);
 	}
 
@@ -44,8 +43,7 @@ methods.shareCards = function(data,cb){
 		fs.writeFileSync("./database/SharePro.json",JSON.stringify(database));
 		cb(data,true);
 	}
-	catch(Exception e){
-		console.log(e.getMessage());
+	catch(Exception){
 		cb(data,false);
 	}
 
