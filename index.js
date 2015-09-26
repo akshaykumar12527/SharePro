@@ -17,7 +17,7 @@ var slide_files=[];
 app.set('port', (process.env.PORT || 8000));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret: 'ssshhhhh'}));
-app.use(router);
+app.use('/api',router);
 app.use(multer({ dest: 'public/upload/',
 	 rename: function (fieldname, filename) {
 	    return filename+Date.now();
