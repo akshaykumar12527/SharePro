@@ -92,7 +92,7 @@ router.route('/getOTP/:phoneNumber')
 		if(done.sent)
 		{
 		response.error=false;
-    	response.data=data.OTP;
+    	response.data=done.OTP;
     	var OTP=data.OTP;
     	response.userMessage='Message sent successfully';
     	SendResponse(res);
