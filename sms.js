@@ -6,7 +6,7 @@ var SMS = new Object();
 var method = new Object();
 var OTP;
 method.send = function(number,cb){
-OTP=Math.floor(Math.random() * (max - min + 1)) + min;
+OTP=Math.floor(Math.random() * (9999 - 1111 + 1)) + 1111;
 exotel.sendSMS(number, 'Hi User, your number '+number+' is now turned '+OTP+'.', function (err, res) {
    if (!err) {
             if(cb)
