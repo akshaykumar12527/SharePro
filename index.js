@@ -148,7 +148,7 @@ app.post('/login',function(request,response){
 	//response.end();
 	
 });
-// router.route('/test/:phoneNumber')
+router.route('/test/:phoneNumber')
 app.post(function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
