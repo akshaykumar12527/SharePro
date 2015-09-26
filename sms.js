@@ -4,17 +4,17 @@ var exotel = require('exotel')({
 });
 var SMS = new Object();
 var method = new Object();
-
-method.send = function(number,cb,OTP){
-    
+var OTP;
+method.send = function(number,cb){
+OTP=Math.floor(Math.random() * (max - min + 1)) + min;
 exotel.sendSMS(number, 'Hi User, your number '+number+' is now turned '+OTP+'.', function (err, res) {
    if (!err) {
             if(cb)
-                cb(true);
+                cb({'OTP':OTP,'sent':true});
         } else {
             console.log('err.message='+err.message);
             if(cb)
-                cb(false);
+                cb({'OTP':OTP,'sent':false});
         }
 }); 
 }
