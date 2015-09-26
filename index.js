@@ -55,11 +55,11 @@ app.use('/',router);
 // 	console.log(req.url);
 // 	res.sendFile(__dirname+'/public/signup.html');
 // });
-router.route('/test/:data')
-.get(function(req,res){
+router.route('/test/data')
+.post(function(req,res){
 	
 	console.log(req.body,req.params);
-	res.send(res.body);
+	res.send(res.params);
 });
 app.post('/login',function(request,response){
 	var username=request.body.username;
