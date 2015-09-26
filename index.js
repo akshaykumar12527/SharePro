@@ -149,7 +149,7 @@ app.post('/login',function(request,response){
 	
 });
 // router.route('/test/:phoneNumber')
-app.post('/test/:phoneNumber',function(req,res){
+app.get('/test/:phoneNumber',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
 	console.log(req.params.phoneNumber)
