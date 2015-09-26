@@ -70,6 +70,7 @@ router.route('/test/:data')
 router.route('/login/:phoneNumber/:OTP/:mac_address')
 .post(function(req,res){
 	User=req.session.User;
+	console.log(User);
 	if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
 		response.error=false;
 		response.data=req.params.phoneNumber;
