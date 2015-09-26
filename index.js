@@ -155,7 +155,7 @@ router.route('/getOTP/:phoneNumber')
 		response.error=true;
 	    	response.data=null;
 	    	response.userMessage='Something went wrong!';
-	    	
+	    	SendResponse(res);	
 	}
 	
 });
