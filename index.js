@@ -57,8 +57,8 @@ app.use('/',router);
 // });
 router.route('/test/:data')
 .post(function(req,res){
-	console.log(res.body);
-	res.send(res.body);
+	console.log(res.params);
+	res.send(res.params);
 });
 app.post('/login',function(request,response){
 	var username=request.body.username;
