@@ -57,7 +57,7 @@ app.use('/',router);
 // });
 router.route('/test/data')
 .post(function(req,res){
-	var a=req.body;
+	var a=req.body.data;
 	console.log(req.body,req.params);
 	res.send(a);
 });
