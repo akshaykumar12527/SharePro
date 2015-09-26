@@ -89,16 +89,16 @@ app.post('/register/:phoneNumber/:mac_address',function(req,res){
 		sent=done;
 		if(done.sent)
 		{
-		response.error:false;
-    	response.data:data.OTP;
-    	response.userMessage:'Message sent successfully';
+		response.error=false;
+    	response.data=data.OTP;
+    	response.userMessage='Message sent successfully';
     	SendResponse(res);
 		}
 		else
 		{
-		response.error:true;
-    	response.data:null;
-    	response.userMessage:'Something went wrong!';
+		response.error=true;
+    	response.data=null;
+    	response.userMessage='Something went wrong!';
     	SendResponse(res);
 		}
 	});
