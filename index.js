@@ -55,9 +55,9 @@ app.use('/',router);
 // 	console.log(req.url);
 // 	res.sendFile(__dirname+'/public/signup.html');
 // });
-router.route('/test/:data')
+router.route('/test/data')
 .post(function(req,res){
-	console.log(req.body,req.params);
+	// console.log(req.body,req.params);
 	res.send(req.params);
 });
 app.post('/login',function(request,response){
