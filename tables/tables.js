@@ -6,7 +6,7 @@ methods.getCardByUserID=function(userid,cb){
 var found=false;
 	var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
 	 for(var i=0;i<database.card.length;i++){
-		 if(database.card[i].userid==req.params.phoneNumber)
+		 if(database.card[i].userid==userid)
 			{
 				found = true;
 				break;
