@@ -83,6 +83,30 @@ app.post('/login',function(request,response){
 		 response.end('row 0');
 		 }
 });
+/*****************************Get cards by userid******************************/
+router.route('/getCards/:phoneNumber')
+.post(function(req,res){
+	console.log('into getCards');
+	var sent;
+	var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
+	 for(var i=0;i<database.card.length;i++){
+		 if(database.card[i].userid==req.params.phoneNumber)
+			{
+			response.error=false;
+	    	response.data=database.card[i].path;
+	    	response.userMessage='get Cards by user successfully';
+	    	SendResponse(res);
+			break;
+			}
+	 }
+	
+	
+	});
+	
+/********************End of generate OTP user***********************************************/
+});
+
+/*****************************Generate OTP for user******************************/
 router.route('/getOTP/:phoneNumber')
 .post(function(req,res){
 	console.log('Testing with Android');
@@ -106,7 +130,7 @@ router.route('/getOTP/:phoneNumber')
 		}
 	});
 	
-
+/********************End of generate OTP user***********************************************/
 });
 app.listen(app.get('port'), function() {
 	  console.log('SharePro node app is running on port', app.get('port'));
