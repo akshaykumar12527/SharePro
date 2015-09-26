@@ -56,7 +56,7 @@ app.use('/',router);
 // 	res.sendFile(__dirname+'/public/signup.html');
 // });
 router.route('/test/:data')
-.post(function(req,res){
+.get(function(req,res){
 	
 	console.log(req.body,req.params);
 	res.send(res.body);
