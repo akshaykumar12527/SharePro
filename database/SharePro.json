@@ -1,1 +1,1 @@
-{"users":[{"phoneNumber":"7206639567","name":"Akshay kumar","email":"akshaykumar12527@gmail.com","mac_address":"192.168.1.36"}],"card":[{"card_id":1,"path":"upload/7206639567/cardaa1.jpg","userid":"7206639567"}]}
+{"users":[{"phoneNumber":"7206639567","OTP":"1234"}],"card":[{"card_id":1,"phoneNumber":"7206639567","email":"akshaykumar12527@gmail.com","position":"NodeJs Developer","company":"LoudShout","facebook":"http://facebook.com/akshaykumar12527","twitter":"@akshaykumar113","linkedin":"/akshaykumar12527"}],"friendship":[{"user1":"7206639567","user2":"9818489269"}]}
