@@ -39,26 +39,6 @@ var SendResponse = function (res) {
   NullResponseValue();
   res.end();
 };
-
-app.use(multer({ dest: 'public/upload/',
-	 rename: function (fieldname, filename) {
-	    return filename+Date.now();
-	  },
-	onFileUploadStart: function (file) {
-	  console.log(file.originalname + ' is starting ...');
-	},
-	onFileUploadComplete: function (file) {
-	  console.log(file.fieldname + ' uploaded to  ' + file.path);
-	  file_path=file.path;
-	  file_name=file.name;
-	  done=true;
-	}
-	}));
-// app.use(express.static(__dirname+"/public"));
-// app.get('/',function(req,res){
-// 	console.log(req.url);
-// 	res.sendFile(__dirname+'/public/signup.html');
-// });
 router.route('/test/:data')
 .post(function(req,res){
 	
@@ -109,8 +89,8 @@ router.route('/insertCard/:phoneNumber/:name/:email/:position/:company/:facebook
 	// User=req.session.User;
 	if(req.params.phoneNumber && req.params.phoneNumber.length==10){
 		// console.log(User,res.body);
-		tables.insertCard(req.params,function(done){
-			if(data,done){
+		tables.insertCard(req.params,function(data,done){
+			if(done){
 				response.error=false;
 				response.data=data;
 				response.userMessage='Card Created successfully';
