@@ -70,15 +70,26 @@ router.route('/test/:data')
 router.route('/authenticate/:phoneNumber/:OTP')
 .post(function(req,res){
 	User=req.session.User;
-	console.log(User,res.body);
-	if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
-		response.error=false;
-		response.data=req.params.phoneNumber;
-		response.userMessage='Authenticated successfully';
-		SendResponse(res);
+	if(User){
+		console.log(User,res.body);
+		if(req.params.OTP==User.OTP && req.params.phoneNumber==User.phoneNumber){
+			response.error=false;
+			response.data=req.params.phoneNumber;
+			response.userMessage='Authenticated successfully';
+			SendResponse(res);
+		}
+		else{
+			response.error=true;
+			response.data=null;
+			response.userMessage='Authenticated failed';
+			SendResponse(res);
+		}
 	}
 	else{
-
+		response.error=true;
+		response.data=null;
+		response.userMessage='Something went wrong';
+		SendResponse(res);
 	}
 });
 /*****************************End of Login******************************/
