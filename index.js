@@ -59,7 +59,7 @@ app.post('/login',function(request,response){
 		 }
 });
 // router.route('/test/:phoneNumber')
-app.post('/test/:phoneNumber',function(req,res){
+app.post('/test/:phoneNumber/:OTP',function(req,res){
 	console.log('Testing with Android');
 	// console.log(SMS.send)
 	console.log(req.params.phoneNumber)
@@ -74,7 +74,7 @@ app.post('/test/:phoneNumber',function(req,res){
 		res.json({'sent':sent});
 		else
 		console.log('Something went wrong');
-	},1);
+	},req.params.OTP);
 	
 
 });
