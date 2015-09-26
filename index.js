@@ -37,73 +37,6 @@ app.get('/',function(req,res){
 	console.log(req.url);
 	res.sendFile(__dirname+'/public/signup.html');
 });
-app.post("/upload",function(req,res){
-		console.log("file name="+file_name);
-			console.log(req.body);
-		fs.createReadStream(file_path).pipe(cloudconvert.convert({
-		    inputformat: file_name.split('.').pop(),
-		    outputformat: 'jpg',
-		    converteroptions: {
-		        quality : 25,
-		    }
-		}).on('error', function(err) {
-		    console.error('Failed: ' + err);
-		}).on('finished', function(data) {
-		    console.log('Done: ' + data.message);
-		    this.pipe(fs.createWriteStream('public/upload/'+file_name.split('.').shift()+'.zip'));
-		}).on('downloaded', function(destination) {
-		    console.log('Downloaded to: ' + destination.path);
-		    fs.mkdirSync('public/upload/'+file_name.split(".").shift());
-		    var read=fs.createReadStream(destination.path);
-		    read.pipe(unzip.Extract({ path: 'public/upload/'+file_name.split(".").shift()+'/' }));
-		    console.log(file_name.split(".").shift());
-		    read.on('end',function(){
-		    	fs.readdir('public/upload/'+file_name.split(".").shift()+'/', function(err, files) {
-		    		if(!err){
-		    		for(var i=0;i<files.length;i++){
-		    			files[i]='upload/'+file_name.split('.').shift()+'/'+files[i];
-		    			console.log(files[i]);
-		    		}
-		    		res.send({'slides':files});
-		    		res.end();
-		    		}
-		    	});
-		    });
-		}));
-
-		res.setTimeout(120000*100, function(){
-	        console.log('Request has timed out.');
-	            res.send({'status':408});
-	            res.end();
-	        });
-	
-});
-
-app.post("/uploadvideo",function(request,response){
-    var postData = '';
-console.log(request.url);
-request.setEncoding('utf8');
-
-request.addListener('data', function(postDataChunk) {
-    postData += postDataChunk;
-});
-
-request.addListener('end', function() {
-    handle.upload(response, postData);
-});
-
-});
-app.post("/register",function(request,response){
-    var postData = '';
-console.log(request.url);
-console.log(request.body);
-    var database=JSON.parse((fs.readFileSync("./database/kvapp.json")).toString());
-    console.log(database.users);
-    database.users.push(request.body);
-    fs.writeFileSync("./database/kvapp.json",JSON.stringify(database));
-    response.sendFile(__dirname+'/public/register_success.html');
-
-});
 app.post('/login',function(request,response){
 	var username=request.body.username;
 	var password=request.body.password;
@@ -124,29 +57,6 @@ app.post('/login',function(request,response){
 		 {
 		 response.end('row 0');
 		 }
-//	var connection=db.createConnection();
-//	connection.connect(function(error){
-//		console.log(error);
-//	});
-//	console.log('connected');
-//	connection.query("select * from users where username='"+username+"' && password='"+password+"'",function(error,row){
-//		if(error){
-//			console.log(error)
-//			response.end('error'+error);
-//		}
-//		else{
-//			if(row.length>0)
-//				{
-//				response.sendFile(__dirname+'/public/index.html');
-//				ses.username=username;
-//				ses.name=row[0].name;
-//				}
-//			else
-//			response.end('row 0');
-//		}
-//	});
-	//response.end();
-	
 });
 // router.route('/test/:phoneNumber')
 app.post('/test/:phoneNumber',function(req,res){
@@ -160,7 +70,10 @@ app.post('/test/:phoneNumber',function(req,res){
 
 		console.log(done);
 		sent=done;
+		if(done)
 		res.json({'sent':sent});
+		else
+		console.log('Something went wrong');
 	},1);
 	
 
