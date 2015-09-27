@@ -53,6 +53,7 @@ methods.shareCards = function(data,cb){
 methods.getContacts=function(data,cb){
 	var found=false;
 	var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
+	data.contacts=[];
 	var count = 0;
 	 for(var i=0;i<database.friendship.length;i++){
 		 if(database.friendship[i].user1==data.user1)

@@ -85,7 +85,7 @@ router.route('/authenticate/:phoneNumber/:OTP')
 });
 /****************************End of Login*****************************/
 /*****************************insert card route******************************/
-router.route('/insertCard/:phoneNumber/:name/:email/:position/:company/:facebook/:linkedin/:twitter')
+router.route('/insertCard/:cardlayout/:phoneNumber/:name/:email/:position/:company/:facebook/:linkedin/:twitter')
 .post(function(req,res){
 	// User=req.session.User;
 	if(req.params.phoneNumber && req.params.phoneNumber.length==10){
