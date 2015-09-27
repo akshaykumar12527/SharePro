@@ -5,7 +5,7 @@ methods.insertUser = function(data,cb){
 		var database=JSON.parse((fs.readFileSync("./database/SharePro.json")).toString());
 		var found=false;
 		for(var i=0;i<database.users.length;i++){
-			if(data.users[i].phoneNumber==data.phoneNumber){
+			if(database.users[i].phoneNumber==data.phoneNumber){
 				found=true;
 				cb(found,found);
 			}
@@ -32,6 +32,7 @@ methods.insertCard = function(data,cb){
 		cb(data,true);
 	}
 	catch(Exception){
+		console.log(Exception);
 		cb(data,false);
 	}
 
@@ -44,6 +45,7 @@ methods.shareCards = function(data,cb){
 		cb(data,true);
 	}
 	catch(Exception){
+		console.log(Exception);
 		cb(data,false);
 	}
 
